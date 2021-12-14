@@ -4,7 +4,7 @@
 #include<numeric>
 #include<cmath>
 #include<fstream>
-
+#include <algorithm>
 void Error() {
 	std::cout << "File error!";
 }
@@ -36,6 +36,8 @@ int main(int argc, char** argv) {
 		}
 		fin.close();
 	}
+	sort(firstPlayer.begin(), firstPlayer.end());
+	sort(secondPlayer.begin(), secondPlayer.end());
 
 	sumOne = std::accumulate(firstPlayer.begin(), firstPlayer.end(), 0);
 	sumTwo = std::accumulate(secondPlayer.begin(), secondPlayer.end(), 0);
