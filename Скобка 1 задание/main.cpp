@@ -18,10 +18,22 @@ int main() {
 	int count = 0;
 
 	for (i = 0;i < sizeof(str);i++) {
+		if (st.size() == 0) {
+			std::cout << "very good" << std::endl;
+	}
 		ch = str[i];
 		if ((i == 0) && ((ch != '(') && (ch != '{') && (ch != '['))) {
 			Error(i);
 			continue;
+		}
+		if ((ch == ')') && (st.top() == '(')) {
+			st.pop();
+		}
+		if ((ch == ']') && (st.top() == '[')) {
+			st.pop();
+		}
+		if ((ch == '}') && (st.top() == '{')) {
+			st.pop();
 		}
 		else {
 			if ((ch == '(') || (ch == '{') || (ch == '[')) {
@@ -30,8 +42,10 @@ int main() {
 				continue;
 			}
 			else {
+
 				if ((ch == ')') && (st.top() != '(')) {
 					Error(i);
+					
 				}
 				if ((ch == ']') && (st.top() != '[')) {
 					Error(i);
