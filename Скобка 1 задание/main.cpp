@@ -55,5 +55,9 @@ int main() {
 				}
 			}
 		}
+		if (st.size() == 0) {
+			std::cout << "very good" << std::endl;
+		}
 	}
+	
 }
