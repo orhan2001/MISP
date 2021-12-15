@@ -13,6 +13,7 @@ int main(int argc, char** argv) {
 
 	int n = 0;
 	int buff = 0;
+	std::vector<int> general;
 	std::vector<int> firstPlayer;
 	std::vector<int> secondPlayer;
 	int sumOne = 0;
@@ -26,19 +27,22 @@ int main(int argc, char** argv) {
 	std::ifstream fin(argv[1]);
 	if (fin.is_open()) {
 		fin >> n;
-		for (int i = 0;i < (n / 2);i++) {
+		for (int i = 0;i < n;i++) {
 			fin >> buff;
-			firstPlayer.push_back(buff);
+			general.push_back(buff);
 		}
-		for (int j = (n / 2);j < n;j++) {
-			fin >> buff;
-			secondPlayer.push_back(buff);
-		}
+
 		fin.close();
 	}
-	sort(firstPlayer.begin(), firstPlayer.end());
-	sort(secondPlayer.begin(), secondPlayer.end());
+	sort(general.begin(), general.end());
+	
+	for (int i = 0;i < (n / 2);i++) {
+		firstPlayer.push_back(general[i]);
+	}
 
+	for (int i = n/2;i < n;i++) {
+		secondPlayer.push_back(general[i]);
+	}
 	sumOne = std::accumulate(firstPlayer.begin(), firstPlayer.end(), 0);
 	sumTwo = std::accumulate(secondPlayer.begin(), secondPlayer.end(), 0);
 
