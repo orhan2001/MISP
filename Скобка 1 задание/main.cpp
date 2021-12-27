@@ -26,15 +26,22 @@ int main() {
 			Error(i);
 			continue;
 		}
-		if ((ch == ')') && (st.top() == '(')) {
-			st.pop();
+		if ((ch == ')') && (st.size() > 0)) {
+			if(st.top() == '('){
+				st.pop();
+			}
 		}
-		if ((ch == ']') && (st.top() == '[')) {
-			st.pop();
-		}
-		if ((ch == '}') && (st.top() == '{')) {
-			st.pop();
-		}
+		if ((ch == '}') && (st.size() > 0)) {
+                        if(st.top() == '{'){
+                                st.pop();
+                        }
+                }
+		if ((ch == ']') && (st.size() > 0)) {
+                        if(st.top() == '['){
+                                st.pop();
+                        }
+                }
+
 		else {
 			if ((ch == '(') || (ch == '{') || (ch == '[')) {
 				st.push(ch);
@@ -43,16 +50,25 @@ int main() {
 			}
 			else {
 
-				if ((ch == ')') && (st.top() != '(')) {
-					Error(i);
+				if ((ch == ')') && (st.size() > 0)) {
+					if(st.top() != '('){
+						Error(i);
+					}
 					
 				}
-				if ((ch == ']') && (st.top() != '[')) {
-					Error(i);
-				}
-				if ((ch == '}') && (st.top() != '{')) {
-					Error(i);
-				}
+				 if ((ch == '}') && (st.size() > 0)) {
+                                        if(st.top() != '{'){
+                                                Error(i);
+                                        }
+
+                                }
+				 if ((ch == ']') && (st.size() > 0)) {
+                                        if(st.top() != '['){
+                                                Error(i);
+                                        }
+
+                                }
+
 			}
 		}
 		if (st.size() == 0) {
@@ -61,3 +77,4 @@ int main() {
 	}
 	
 }
+
